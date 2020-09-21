@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_repeat_summary_points",
+  "info": {
+    "name": "summary_point",
+    "icon": "align-justify"
+  },
+  "options": {},
+  "attributes": {
+    "point": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

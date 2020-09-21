@@ -1,19 +1,14 @@
 module.exports = ({ env }) => ({
-  defaultConnection: 'default',
+  defaultConnection: "default",
   connections: {
     default: {
-      connector: 'mongoose',
+      connector: "mongoose",
       settings: {
-        host: env('DATABASE_HOST', '127.0.0.1'),
-        srv: env.bool('DATABASE_SRV', false),
-        port: env.int('DATABASE_PORT', 27017),
-        database: env('DATABASE_NAME', 'backend'),
-        username: env('DATABASE_USERNAME', ''),
-        password: env('DATABASE_PASSWORD', ''),
+        uri:
+          "mongodb://CmonkArchitect:Iamcoolcmonk27@cmonk-shard-00-00.husmy.mongodb.net:27017,cmonk-shard-00-01.husmy.mongodb.net:27017,cmonk-shard-00-02.husmy.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-135mue-shard-0&authSource=admin&retryWrites=true&w=majority",
       },
       options: {
-        authenticationDatabase: env('AUTHENTICATION_DATABASE', null),
-        ssl: env.bool('DATABASE_SSL', false),
+        ssl: env.bool("DATABASE_SSL", true),
       },
     },
   },

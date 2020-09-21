@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "introductions",
+  "info": {
+    "name": "introduction"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "sliding_photo": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": true
+    },
+    "moto": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

@@ -41,5 +41,12 @@ module.exports = {
         // // Possibility to login with a strapi user, when content types are not publically available (optional).
       },
     },
+    {
+      resolve: `gatsby-plugin-material-ui`,
+      options: {
+        stylesProvider: {},
+      },
+    },
+    `custom-mui-theme`,
   ],
 }

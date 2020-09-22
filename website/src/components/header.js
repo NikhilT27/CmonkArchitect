@@ -6,26 +6,35 @@ import Typography from "@material-ui/core/Typography"
 import Button from "@material-ui/core/Button"
 import IconButton from "@material-ui/core/IconButton"
 import MenuIcon from "@material-ui/icons/Menu"
+import Menu from "./menu"
+import { Box, Grid } from "@material-ui/core"
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1,
-    backgroundColor: "transparent",
+    background: "transparent",
   },
   menuButton: {
     marginRight: theme.spacing(2),
-    color: "black",
+    color: "white",
   },
   title: {
     flexGrow: 1,
-    color: "black",
+    color: "white",
   },
   appbar: {
-    backgroundColor: "transparent",
+    background: "transparent",
     boxShadow: "none",
   },
   appButton: {
-    color: "black",
+    color: "white",
+    paddingTop: theme.spacing(1.5),
+    "&:focus": {
+      outline: "none",
+    },
+  },
+  buttonBox: {
+    paddingRight: theme.spacing(1),
+    paddingLeft: theme.spacing(1),
   },
 }))
 
@@ -34,28 +43,40 @@ export default function ButtonAppBar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" className={classes.appbar}>
-        <Toolbar style={{ backgroundColor: "transparent" }}>
-          <Typography variant="h6" className={classes.title}>
-            Cmonk Architect
-          </Typography>
-          <Button color="inherit" className={classes.appButton}>
-            Projects
-          </Button>
-          <Button color="inherit" className={classes.appButton}>
-            Services
-          </Button>
-          <Button color="inherit" className={classes.appButton}>
-            Philosophy
-          </Button>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-          >
-            <MenuIcon />
-          </IconButton>
+      <AppBar position="fixed" className={classes.appbar}>
+        <Toolbar>
+          <Grid container justify="space-between" alignItems="center">
+            <Typography variant="h6" className={classes.title}>
+              Cmonk Architect
+            </Typography>
+            <Box className={classes.buttonBox}>
+              <Button href="/page-2/" className={classes.appButton}>
+                Projects
+              </Button>
+              <Button
+                href="/page-2/"
+                color="inherit"
+                className={classes.appButton}
+              >
+                Services
+              </Button>
+              <Button
+                href="/page-2/"
+                color="inherit"
+                className={classes.appButton}
+              >
+                Philosophy
+              </Button>
+            </Box>
+
+            <Menu
+              style={{
+                "&:focus": {
+                  outline: "none",
+                },
+              }}
+            />
+          </Grid>
         </Toolbar>
       </AppBar>
     </div>

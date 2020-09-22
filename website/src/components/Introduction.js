@@ -4,22 +4,46 @@ import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 
 import { Carousel } from "react-bootstrap"
-import { Typography, IconButton, Grid } from "@material-ui/core"
+import { Typography, IconButton, Grid, Paper } from "@material-ui/core"
 
 const useStyles = makeStyles(theme => ({
   root: {},
+  carouselImage: {
+    width: "window.innerWidth",
+    height: "window.innerHeight",
+    maxHeight: "650px",
+  },
+  carouselText: {
+    position: "absolute",
+    right: "10%",
+    bottom: theme.spacing(15),
+    width: "300px",
+    textAlign: "left",
+    color: "#fff",
+  },
 }))
 
 export default function Introduction() {
   const classes = useStyles()
   const data = useStaticQuery(graphql`
     query {
-      placeholderImage: file(
-        relativePath: { eq: "pexels-pixabay-262347.jpg" }
-      ) {
+      Image1: file(relativePath: { eq: "1.jpg" }) {
         childImageSharp {
-          fluid {
+          fluid(quality: 100, maxHeight: 768, maxWidth: 1368) {
             ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      allStrapiIntroductions {
+        nodes {
+          moto
+          sliding_photo {
+            childImageSharp {
+              fluid(quality: 100, maxHeight: 768, maxWidth: 1368) {
+                ...GatsbyImageSharpFluid
+                src
+              }
+            }
           }
         }
       }
@@ -28,37 +52,28 @@ export default function Introduction() {
 
   return (
     <div className={classes.root}>
-      <Carousel>
-        <Carousel.Item>
-          <div style={{ width: "window.innerWidth", height: "600px" }}>
-            <Img fluid={data.placeholderImage.childImageSharp.fluid} />
-          </div>
-          <Carousel.Caption>
-            <h3>First slide sds</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <div style={{ width: "window.innerWidth", height: "600px" }}>
-            <Img fluid={data.placeholderImage.childImageSharp.fluid} />
-          </div>
-
-          <Carousel.Caption>
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <div style={{ width: "window.innerWidth", height: "600px" }}>
-            <Img fluid={data.placeholderImage.childImageSharp.fluid} />
-          </div>
-          <Carousel.Caption>
-            <h3>Third slide label</h3>
-            <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-            </p>
-          </Carousel.Caption>
-        </Carousel.Item>
+      <Carousel
+        controls={false}
+        indicators={false}
+        pause={false}
+        interval={4000}
+      >
+        {data.allStrapiIntroductions.nodes.map(item => {
+          return (
+            <Carousel.Item>
+              <div className={classes.carouselImage}>
+                <Img fluid={item.sliding_photo.childImageSharp.fluid} />
+              </div>
+              <Paper elevation={1}>
+                <Grid container justify="flex-end" alignItems="center">
+                  <Typography className={classes.carouselText}>
+                    {item.moto}
+                  </Typography>
+                </Grid>
+              </Paper>
+            </Carousel.Item>
+          )
+        })}
       </Carousel>
     </div>
   )

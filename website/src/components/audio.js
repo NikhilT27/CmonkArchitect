@@ -51,22 +51,14 @@ export default function Audio() {
           className={classes.audioPlayer}
           customIcons={{
             play: (
-              <MusicNoteIcon
-                style={{
-                  "&:focus": {
-                    outline: "none",
-                  },
-                }}
-              />
+              <IconButton>
+                <MusicNoteIcon style={{ fontSize: 30 }} />
+              </IconButton>
             ),
             pause: (
-              <MusicOffIcon
-                style={{
-                  "&:focus": {
-                    outline: "none",
-                  },
-                }}
-              />
+              <IconButton>
+                <MusicOffIcon style={{ fontSize: 30 }} />
+              </IconButton>
             ),
           }}
         />

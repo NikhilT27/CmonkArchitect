@@ -13,18 +13,19 @@ const useStyles = makeStyles(theme => ({
     paddingRight: "50px",
   },
   image: {
-    width: "400px",
+    width: "300px",
   },
 }))
 
-export default function About() {
+export default function Service() {
   const classes = useStyles()
   const data = useStaticQuery(graphql`
     query {
-      allStrapiAbouts {
+      allStrapiServices {
         nodes {
+          title
           information
-          about_image {
+          service_image {
             childImageSharp {
               fluid {
                 ...GatsbyImageSharpFluid
@@ -37,18 +38,25 @@ export default function About() {
   `)
   return (
     <div className={classes.root}>
-      {data.allStrapiAbouts.nodes.map(item => {
+      <Typography variant="h3">Services</Typography>
+      {data.allStrapiServices.nodes.map(item => {
         return (
-          <Box>
-            <Grid container justify="space-around" alignItems="center">
+          <Box style={{ paddingTop: "50px", paddingBottom: "50px" }}>
+            <Grid
+              container
+              direction="row"
+              justify="space-around"
+              alignItems="center"
+            >
               <Grid item>
                 <div style={{ width: "300px" }}>
+                  <Typography variant="h4">{item.title}</Typography>
                   <Typography>{item.information}</Typography>
                 </div>
               </Grid>
               <Grid item>
                 <div className={classes.image}>
-                  <Img fluid={item.about_image.childImageSharp.fluid} />
+                  <Img fluid={item.service_image.childImageSharp.fluid} />
                 </div>
               </Grid>
             </Grid>

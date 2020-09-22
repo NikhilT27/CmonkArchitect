@@ -5,6 +5,9 @@ import Layout from "../components/layout"
 import Image from "../components/image"
 import Introduction from "../components/Introduction"
 import About from "../components/About"
+import Service from "../components/Service"
+import Project from "../components/Project"
+import Footer from "../components/Footer"
 
 import SocialMedia from "../components/socialMedia"
 import Audio from "../components/audio"
@@ -26,6 +29,9 @@ const IndexPage = () => {
         <SEO title="Home" />
         <Introduction />
         <About />
+        <Service />
+        <Project />
+        <Footer />
       </Layout>
       <SocialMedia />
       <Audio />
